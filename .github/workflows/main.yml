@@ -1,0 +1,17 @@
+on:
+  push:
+    branches:
+    - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      NUGET_KEY: ${{ secrets.NUGET_KEY }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Run publish script
+        run: bash publish.sh
+        
